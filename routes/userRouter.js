@@ -21,9 +21,22 @@ router.post('/', upload.single('image'), async (req, res) => {
     }
 });
 
+
+//get all users 
 router.get('/', async (req, res) => {
     try {
         let user = await User.find();
+        !user && console.log('user not found');
+        res.json(user);
+    } catch (error) {
+        console.log(error);
+    }
+});
+
+//get a specific user by id
+router.get('/:id', async (req, res) => {
+    try {
+        let user = await User.findById(req.params.id);
         !user && console.log('user not found');
         res.json(user);
     } catch (error) {

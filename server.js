@@ -5,6 +5,7 @@ dotenv.config();
 
 const app = express();
 const userRouter = require('./routes/userRouter');
+const postRouter = require('./routes/postRouter');
 
 //connect to database
 mongoose.connect(process.env.MONGO_URI, {
@@ -22,6 +23,7 @@ app.use(express.urlencoded({extended: true}));
 
 //routes
 app.use('/users', userRouter);
+app.use('/posts', postRouter);
 
 
 app.listen(8080, () => {
